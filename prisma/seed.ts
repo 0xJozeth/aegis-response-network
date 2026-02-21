@@ -1,4 +1,4 @@
-import { PrismaClient } from '../src/generated/prisma/client.js'
+import { PrismaClient } from '@prisma/client'
 
 import { PrismaPg } from '@prisma/adapter-pg'
 
@@ -11,19 +11,19 @@ const prisma = new PrismaClient({ adapter })
 async function main() {
   console.log('🌱 Seeding database...')
 
-  // Clear existing todos
-  await prisma.todo.deleteMany()
+  // Clear existing inventory
+  await prisma.inventoryItem.deleteMany()
 
-  // Create example todos
-  const todos = await prisma.todo.createMany({
+  // Create example inventory items
+  const items = await prisma.inventoryItem.createMany({
     data: [
-      { title: 'Buy groceries' },
-      { title: 'Read a book' },
-      { title: 'Workout' },
+      { sku: 'MED-001', name: 'First Aid Kit', category: 'Medical', quantity: 50, warehouseId: 'WH-1' },
+      { sku: 'FOOD-001', name: 'MRE Rations', category: 'Food', quantity: 200, warehouseId: 'WH-1' },
+      { sku: 'SHEL-001', name: 'Emergency Tent', category: 'Shelter', quantity: 20, warehouseId: 'WH-2' },
     ],
   })
 
-  console.log(`✅ Created ${todos.count} todos`)
+  console.log(`✅ Created ${items.count} inventory items`)
 }
 
 main()
