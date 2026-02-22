@@ -12,4 +12,6 @@ jobs:
         with: { version: latest }
       - run: biome ci .
       - run: npx prisma generate
+        env:
+          DATABASE_URL: "postgresql://dummy:dummy@localhost:5432/dummy"
       - run: npx tsc --noEmit
