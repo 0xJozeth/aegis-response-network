@@ -11,4 +11,5 @@ jobs:
       - uses: biomejs/setup-biome@v2
         with: { version: latest }
       - run: biome ci .
+      - run: npx prisma generate
       - run: npx tsc --noEmit
